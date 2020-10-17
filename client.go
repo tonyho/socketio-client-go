@@ -82,7 +82,8 @@ func (s *socketClient) Disconnect() {
 }
 
 func (s *socketClient) Emit(event string, args ...interface{}) {
-	if atomic.LoadUint32(&s.state) == stateReady && !s.emit(event, args) {
+	//if atomic.LoadUint32(&s.state) == stateReady && !s.emit(event, args) {
+	if atomic.LoadUint32(&s.state) == stateReady  {
 		m := &protocol.Message{
 			Type:      protocol.MessageTypeEvent,
 			Namespace: "/",
